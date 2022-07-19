@@ -22,14 +22,21 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 // define provider
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
-provider.setCustomParameters({
+//we can have multiple providers for wxample we can import FacebookAuthProvider from firebase/auth
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+//sign in with google popup
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+
+//sign in with google redirect
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 // instantiate the db
 export const db = getFirestore();
