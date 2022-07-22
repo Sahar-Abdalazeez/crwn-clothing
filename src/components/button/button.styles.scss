@@ -1,10 +1,12 @@
 .button-container{
-    min-width: 165px;
-    width:auto;
-    height: 50px;
+    // min-width: 165px;
+    min-width:200px;
+    // width:150px;
+    min-height: 50px;
+    max-height: 70px;
     letter-spacing: 0.5px;
     line-height: 0.5px;
-    padding: 0 35px 0 35px;
+    padding: 0 15px 0 15px;
     font-size: 15px;
     background-color: black;
     color: white;
@@ -15,6 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
     &:hover{
         background-color: white;
