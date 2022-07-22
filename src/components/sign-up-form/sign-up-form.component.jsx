@@ -5,13 +5,13 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 
-  //initial field value =>empty fields
-  const defaultFormFields = {
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
+//initial field value =>empty fields
+const defaultFormFields = {
+  displayName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 export const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -22,7 +22,7 @@ export const SignUpForm = () => {
     setFormFields(defaultFormFields);
   };
 
-//on change the value of any field 
+  //on change the value of any field
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
