@@ -3,6 +3,12 @@ import {
   creatAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
+import './sign-up-form.styles.scss'
+import { FormInput } from "../formInput/form-input.component";
+import Button from '../button/button.component';
+import {BUTTON_TYPE_CLASSES} from '../../constants/button.constants';
+
+
 
 
 //initial field value =>empty fields
@@ -49,46 +55,47 @@ export const SignUpForm = () => {
       }
     }
   };
-
   return (
-    <div>
-      <h1>Signup with your email and password </h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account ?</h2>
+      <span>Signup with your email and password </span>
 
       <form onSubmit={handleSubmit}>
-        <label>Display Name </label>
-        {/* onchange the value we need to know which field is changing so we added the name  */}
-        <input
+        <FormInput
+          label="Display Name"
           type="text"
           required
           name="displayName"
           onChange={handleChange}
           value={displayName}
         />
-        <label> </label>Email
-        <input
+
+        <FormInput
+          label="Email"
           type="email"
           required
           name="email"
           onChange={handleChange}
           value={email}
         />
-        <label>Password </label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           required
           name="password"
           onChange={handleChange}
           value={password}
         />
-        <label>Confirm Password </label>
-        <input
+        <FormInput
+          label="Confirm Password "
           type="password"
           required
           name="confirmPassword"
           onChange={handleChange}
           value={confirmPassword}
         />
-        <button typr="submit">Sign up </button>
+
+        <Button >Sign up </Button>
       </form>
     </div>
   );
