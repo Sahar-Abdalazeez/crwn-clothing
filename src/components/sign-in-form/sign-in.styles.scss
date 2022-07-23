@@ -1,16 +1,25 @@
-
+$breakpoint-phone: 768px;
 
 .sign-in-container{
     width: 40%;
- margin-right: 10%;
-
    
 }
 .btns-container{
     width: 100%;
     display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 20px;
-flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+
+@media only screen and (max-width: $breakpoint-phone) {
+    .sign-in-container{
+        width: 100%;
+        margin-bottom: 40px;
+        border-bottom: solid 1px  #ededed;
+        padding: 5%;
+
+    }
 }

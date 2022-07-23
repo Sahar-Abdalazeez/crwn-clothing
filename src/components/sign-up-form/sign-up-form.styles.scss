@@ -1,3 +1,6 @@
+
+$breakpoint-phone: 768px;
+
 .sign-up-container{
     display: flex;
     flex-direction: column;
@@ -5,5 +8,14 @@
 
     h2{
         margin: 10px 0;
+    }
+}
+
+
+@media only screen and (max-width: $breakpoint-phone) {
+    .sign-up-container{
+        width: 100%;
+        padding: 5%;
+
     }
 }
