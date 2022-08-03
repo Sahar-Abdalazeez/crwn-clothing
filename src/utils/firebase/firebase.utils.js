@@ -4,6 +4,9 @@ import {
   signInWithRedirect,
   GoogleAuthProvider,
   getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 //import firestore functions
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -24,7 +27,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 // define provider
 const googleProvider = new GoogleAuthProvider();
 
-//we can have multiple providers for wxample we can import FacebookAuthProvider from firebase/auth
+//we can have multiple providers for example we can import FacebookAuthProvider from firebase/auth
 googleProvider.setCustomParameters({
   prompt: "select_account",
 });
@@ -34,20 +37,16 @@ export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
-//sign in with google redirect
-export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleProvider);
-
 // instantiate the db
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (userAuth,additionalInformation={}) => {
   const userDocRef = doc(db, "users", userAuth.uid);
-  console.log("userDocRef", userDocRef);
+  // console.log("userDocRef", userDocRef);
 
   //user data to know if there is a reference exists
   const userSnapshot = await getDoc(userDocRef);
-  console.log("userSnapshot", userSnapshot.exists());
+  // console.log("userSnapshot", userSnapshot.exists());
 
   //if the user doesn't exist the we will add it
   if (!userSnapshot.exists()) {
@@ -59,6 +58,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalInformation,
       });
     } catch (error) {
       console.log("error creating user ");
@@ -67,3 +67,22 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 
   return userDocRef;
 };
+
+
+
+
+export const creatAuthUserWithEmailAndPassword=async(email, password)=>{
+  if(!email || !password) return;
+ return await createUserWithEmailAndPassword(auth,email,password);
+
+}
+
+
+
+export const signInAuthUserWithEmailAndPassword=async(email, password)=>{
+  if(!email || !password) return;
+ return await signInWithEmailAndPassword(auth,email,password);
+
+}
+
+export const signOutUser = async () => await signOut(auth);
