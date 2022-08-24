@@ -3,7 +3,7 @@ import Button from "../button/button.component";
 import { FormInput } from "../formInput/form-input.component";
 import { BUTTON_TYPE_CLASSES } from "../../constants/button.constants";
 import "./sign-in.styles.scss";
-import {UserContext} from '../../contexts/user.context'
+
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
@@ -18,7 +18,6 @@ const defaultFields = {
 export const SignInForm = () => {
   const [fieldsValues, setFieldsValues] = useState(defaultFields);
   const { email, password } = fieldsValues;
-  const {setCurrentUser} = useContext(UserContext);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,8 +30,7 @@ export const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   //function when submitting the form
@@ -40,11 +38,10 @@ export const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const {user} = await signInAuthUserWithEmailAndPassword(
+       await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      setCurrentUser({user});
       resetFormFields();
     } catch (error) {
       switch (error.code) {
