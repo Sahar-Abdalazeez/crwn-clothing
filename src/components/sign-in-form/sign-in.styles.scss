@@ -1,25 +1,22 @@
 $breakpoint-phone: 768px;
 
-.sign-in-container{
-    width: 40%;
-   
+.sign-in-container {
+  width: 40%;
 }
-.btns-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    flex-wrap: wrap;
+.btns-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-wrap: wrap;
 }
-
 
 @media only screen and (max-width: $breakpoint-phone) {
-    .sign-in-container{
-        width: 100%;
-        margin-bottom: 40px;
-        border-bottom: solid 1px  #ededed;
-        padding: 5%;
-
-    }
+  .sign-in-container {
+    width: 100%;
+    margin-bottom: 40px;
+    border-bottom: solid 1px #ededed;
+    padding: 5%;
+  }
 }

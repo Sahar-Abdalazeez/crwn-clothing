@@ -4,22 +4,22 @@ import "./index.css";
 import App from "./App";
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from "./reportWebVitals";
-import {BrowserRouter} from 'react-router-dom';
-import {UserProvider} from  './contexts/user.context';
-import {ProductsProvider} from  './contexts/products.context';
-import {CartContextProvider} from './contexts/cart.context';
+import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "./contexts/user.context";
+import { CategoriesProvider } from "./contexts/categories.context";
+import { CartContextProvider } from "./contexts/cart.context";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    {/* any component inside the provider will have access to context data  */}
-    <UserProvider>
-       <ProductsProvider>
-        <CartContextProvider>
-        <App />
-        </CartContextProvider>
-       </ProductsProvider> 
-    </UserProvider>
+      {/* any component inside the provider will have access to context data  */}
+      <UserProvider>
+        <CategoriesProvider>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </CategoriesProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
