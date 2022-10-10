@@ -6,11 +6,20 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut, 
+  signOut,
   onAuthStateChanged,
 } from "firebase/auth";
 //import firestore functions
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -41,7 +50,50 @@ export const signInWithGooglePopup = () =>
 // instantiate the db
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth,additionalInformation={}) => {
+//adding collection and documents
+export const addCollectionAndDocuments = async (
+  collectionkey,
+  objectsToAdd
+) => {
+  //this is the collection reference
+  const collectionRef = collection(db, collectionkey);
+  //we want to store the objects in the collectionRef
+
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    //document reference
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    //adding the object to the document reference
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+  console.log("done");
+};
+
+//get the collections and documents from firestore
+export const getCategoriesAndDocuments = async (
+  collectionkey,
+  objectsToAdd
+) => {
+  //collection reference
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  //access different documents //this will give us an array for all of individual documents
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    //we changed the object as we want [{title:'',items:[]}]
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
+};
+
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   // console.log("userDocRef", userDocRef);
 
@@ -69,23 +121,17 @@ export const createUserDocumentFromAuth = async (userAuth,additionalInformation=
   return userDocRef;
 };
 
+export const creatAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
 
-
-
-export const creatAuthUserWithEmailAndPassword=async(email, password)=>{
-  if(!email || !password) return;
- return await createUserWithEmailAndPassword(auth,email,password);
-
-}
-
-
-
-export const signInAuthUserWithEmailAndPassword=async(email, password)=>{
-  if(!email || !password) return;
- return await signInWithEmailAndPassword(auth,email,password);
-
-}
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await signInWithEmailAndPassword(auth, email, password);
+};
 
 export const signOutUser = async () => await signOut(auth);
-//once the suth change it will call the callback function 
-export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+//once the suth change it will call the callback function
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

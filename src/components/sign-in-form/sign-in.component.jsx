@@ -1,4 +1,4 @@
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import Button from "../button/button.component";
 import { FormInput } from "../formInput/form-input.component";
 import { BUTTON_TYPE_CLASSES } from "../../constants/button.constants";
@@ -38,10 +38,7 @@ export const SignInForm = () => {
     event.preventDefault();
 
     try {
-       await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -82,9 +79,10 @@ export const SignInForm = () => {
         />
         <div className="btns-container">
           <Button buttonType={BUTTON_TYPE_CLASSES.INVERTED}>SIGN IN </Button>
-         {/* if the type of the button is submit then by default  it will try to submit the form when show the popup for signing in with google 
+          {/* if the type of the button is submit then by default  it will try to submit the form when show the popup for signing in with google 
          to prevent this we sit it's type to button  */}
-          <Button type='button'
+          <Button
+            type="button"
             buttonType={BUTTON_TYPE_CLASSES.GOOGLE}
             onClick={signInWithGoogle}
           >

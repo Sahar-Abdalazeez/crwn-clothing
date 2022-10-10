@@ -3,10 +3,10 @@ import {
   creatAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import './sign-up-form.styles.scss'
+import "./sign-up-form.styles.scss";
 import { FormInput } from "../formInput/form-input.component";
-import Button from '../button/button.component';
-import {BUTTON_TYPE_CLASSES} from '../../constants/button.constants';
+import Button from "../button/button.component";
+import { BUTTON_TYPE_CLASSES } from "../../constants/button.constants";
 
 //initial field value =>empty fields
 const defaultFormFields = {
@@ -91,7 +91,7 @@ export const SignUpForm = () => {
           value={confirmPassword}
         />
 
-        <Button >Sign up </Button>
+        <Button>Sign up </Button>
       </form>
     </div>
   );
