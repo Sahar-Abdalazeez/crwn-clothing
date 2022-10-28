@@ -4,6 +4,7 @@ import { BUTTON_TYPE_CLASSES } from "../../constants/button.constants";
 import CartItem from "../../components/cart-item/cart-item.component";
 import { CartContext } from "../../contexts/cart.context";
 import { useNavigate } from "react-router-dom";
+import Button from '../button/button.component';
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
@@ -17,13 +18,13 @@ const CartDropdown = () => {
           <EmptyMessage>Your Cart is Empty</EmptyMessage>
         )}
       </CartItems>
-      <CheckoutButton
+      <Button
 
         buttonType={BUTTON_TYPE_CLASSES.INVERTED}
         onClick={() => navigate("/checkout")}
       >
         Go to checkout
-      </CheckoutButton>
+      </Button>
     </CartDropdownContainer>
   );
 };
