@@ -8,7 +8,6 @@ import Button from '../button/button.component';
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
-  console.log("cartItems", cartItems);
   return (
     <CartDropdownContainer>
       <CartItems>

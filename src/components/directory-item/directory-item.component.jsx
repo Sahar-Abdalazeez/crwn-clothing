@@ -2,7 +2,6 @@ import { BackgroundImage, DirectoryItemContainer, Body } from "./directory-item.
 
 const DirectoryItem = ({ category }) => {
   const { imageUrl, title } = category;
-  console.log('imageUrl', imageUrl)
   return (
     <DirectoryItemContainer>
       <BackgroundImage imageUrl={imageUrl} />
