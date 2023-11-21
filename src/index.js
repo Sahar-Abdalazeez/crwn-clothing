@@ -8,19 +8,21 @@ import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./contexts/user.context";
 import { CategoriesProvider } from "./contexts/categories.context";
 import { CartContextProvider } from "./contexts/cart.context";
-
+import { Provider } from "react-redux";
+import {store} from './store/store';
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store} >
     <BrowserRouter>
       {/* any component inside the provider will have access to context data  */}
-      <UserProvider>
-        <CategoriesProvider>
+      {/* <UserProvider> */}
+        {/* <CategoriesProvider> */}
           <CartContextProvider>
             <App />
           </CartContextProvider>
-        </CategoriesProvider>
-      </UserProvider>
+      {/* </UserProvider> */}
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
