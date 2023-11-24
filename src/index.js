@@ -5,8 +5,7 @@ import App from "./App";
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { UserProvider } from "./contexts/user.context";
-import { CategoriesProvider } from "./contexts/categories.context";
+// import { CategoriesProvider } from "./contexts/categories.context";
 import { CartContextProvider } from "./contexts/cart.context";
 import { Provider } from "react-redux";
 import {store} from './store/store';
@@ -15,12 +14,10 @@ ReactDOM.render(
     <Provider store={store} >
     <BrowserRouter>
       {/* any component inside the provider will have access to context data  */}
-      {/* <UserProvider> */}
         {/* <CategoriesProvider> */}
           <CartContextProvider>
             <App />
           </CartContextProvider>
-      {/* </UserProvider> */}
     </BrowserRouter>
     </Provider>
   </React.StrictMode>,

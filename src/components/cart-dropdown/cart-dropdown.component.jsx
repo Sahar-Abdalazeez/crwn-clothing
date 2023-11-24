@@ -3,14 +3,12 @@ import { CartDropdownContainer, CartItems, EmptyMessage, CheckoutButton } from "
 import { BUTTON_TYPE_CLASSES } from "../../constants/button.constants";
 import CartItem from "../../components/cart-item/cart-item.component";
 import { CartContext } from "../../contexts/cart.context";
-import { CategoriesContext } from "../../contexts/categories.context.jsx";
 
 import { useNavigate } from "react-router-dom";
 import Button from '../button/button.component';
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
-  const {categoriesMap}  = useContext(CategoriesContext);
-  console.log('====categoriesMap', categoriesMap)
+  
   const navigate = useNavigate();
   return (
     <CartDropdownContainer>
