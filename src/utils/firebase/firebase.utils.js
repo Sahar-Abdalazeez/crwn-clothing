@@ -72,22 +72,20 @@ export const addCollectionAndDocuments = async (
 };
 
 //get the collections and documents from firestore
-export const getCategoriesAndDocuments = async (
-  collectionkey,
-  objectsToAdd
-) => {
+export const getCategoriesAndDocuments = async () => {
   //collection reference
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
   //access different documents //this will give us an array for all of individual documents
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    //we changed the object as we want [{title:'',items:[]}]
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot)=> docSnapshot.data())
+  // reduce((acc, docSnapshot) => {
+  //   //we changed the object as we want [{title:'',items:[]}]
+  //   const { title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  // }, {});
+  //return categoryMap;
 };
 
 export const createUserDocumentFromAuth = async (

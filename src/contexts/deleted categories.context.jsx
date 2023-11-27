@@ -5,14 +5,14 @@ export const CategoriesContext = createContext({
 });
 
 export const CategoriesProvider = ({ children }) => {
-  const [categoriesMap, setCategoriesMap] = useState({});
+  const [categoriesMap, setCategories] = useState({});
   // this code is deleted since we started using redux instead of context 
   // useEffect(() => {
   //   //because getCategoriesAndDocuments is an async function and we are calling it inside useEffect we create new async function
 
   //   const getCategoriesMap = async () => {
   //     const categoryMap = await getCategoriesAndDocuments();
-  //     setCategoriesMap(categoryMap);
+  //     setCategories(categoryMap);
   //   };
   //   getCategoriesMap();
   // }, []);
